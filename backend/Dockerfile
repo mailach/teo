@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN yarn add glob rimraf
 
-RUN yarn install --only=development
+RUN yarn install
 
 COPY . .
 

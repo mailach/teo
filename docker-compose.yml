@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   frontend:
+    container_name: frontend_dev
     build:
       context: ./frontend/
       dockerfile: Dockerfile
@@ -18,9 +19,8 @@ services:
     image: nestjs-api-dev:1.0.0
     build:
       context: ./backend/
-      target: development
       dockerfile: Dockerfile
-    command: npm run start:debug
+    command: yarn run start:debug --preserveWatchOutput
     ports:
       - 3000:3000
       - 9229:9229
