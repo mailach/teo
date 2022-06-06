@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Card, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Event, EventCard } from "./EventCard";
 
 export const EventList = () => {

@@ -1,4 +1,6 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
+
+import { Link } from "react-router-dom";
 
 export interface Event {
   title: string;
@@ -9,13 +11,25 @@ export interface Event {
 
 export const EventCard = ({ title, date, maxParticipants, id }: Event) => {
   return (
-    <Box>
-      <Card key={id}>
+    <Card
+      key={id}
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+      }}
+    >
+      <Box>
         <Typography variant="h4">{`${id}: ${title}`}</Typography>
         <Typography variant="body1">{`Am ${new Date(
           date
         )} für bis zu ${maxParticipants} Teilis`}</Typography>
-      </Card>
-    </Box>
+      </Box>
+      <Box>
+        <Link to={`/events/${id}/register`}>
+          <Button variant="contained">Register</Button>
+        </Link>
+      </Box>
+    </Card>
   );
 };
