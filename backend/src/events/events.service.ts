@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateEventDto } from './dto/create-event.dto';
 import { Event } from './model/event';
 
 @Injectable()
@@ -14,8 +15,12 @@ export class EventsService {
     return this.eventsRepository.find();
   }
 
+  createEvent(createEventDto: CreateEventDto) {
+    return this.eventsRepository.save(createEventDto);
+  }
+
   seedSample() {
-    const sampleEvent = {
+    const sampleEvent: CreateEventDto = {
       title: 'Hello World!',
       date: new Date(),
       maxParticipants: 10,
