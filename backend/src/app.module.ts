@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { EventsModule } from './events/events.module';
 import { Event } from './events/model/event';
 
@@ -24,7 +22,5 @@ import { Event } from './events/model/event';
     }),
     EventsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

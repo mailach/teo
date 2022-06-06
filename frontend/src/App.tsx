@@ -8,7 +8,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const fetchData = () => {
-    fetch(`http://localhost:3000`)
+    fetch(`http://localhost:3000/events/getAll`)
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
