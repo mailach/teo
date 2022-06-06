@@ -17,6 +17,8 @@ services:
 
   backend:
     container_name: nestjs_api_dev
+    env_file:
+      - .env.dev
     build:
       context: ./backend/
       dockerfile: Dockerfile
