@@ -1,10 +1,32 @@
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { Event, EventCard } from "./EventCard";
 
+interface FormData {
+  name: string;
+  food: string;
+  allergies: string;
+}
+
 export const EventRegistration = () => {
   const { id } = useParams();
+
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+  const onSubmit = handleSubmit((data) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+    fetch(`http://localhost:3000/events/${id}/register`, requestOptions);
+  });
 
   const [event, setEvent] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,5 +53,18 @@ export const EventRegistration = () => {
     return <div>Loading...</div>;
   }
 
-  return <Box>{event && <EventCard {...(event as Event)} />}</Box>;
+  return (
+    <Box>
+      {event && <EventCard {...(event as Event)} />}
+      <form onSubmit={onSubmit}>
+        <label>Name</label>
+        <input {...register("name")} />
+        <label>Food</label>
+        <input {...register("food")} />
+        <label>Allergies</label>
+        <input {...register("allergies")} />
+        <input type="submit" />
+      </form>
+    </Box>
+  );
 };
