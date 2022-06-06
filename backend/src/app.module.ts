@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsModule } from './events/events.module';
 import { Event } from './events/model/event.entity';
+import { Registration } from './events/model/registration.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { Event } from './events/model/event.entity';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [Event],
+      entities: [Event, Registration],
       synchronize: true,
     }),
     EventsModule,
