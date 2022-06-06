@@ -14,13 +14,14 @@ services:
       - "3001:3001"
     environment:
       - CHOKIDAR_USEPOLLING=true
+
   backend:
     container_name: nestjs_api_dev
-    image: nestjs-api-dev:1.0.0
     build:
       context: ./backend/
       dockerfile: Dockerfile
-    command: yarn run start:debug --preserveWatchOutput
+      target: development
+    command: yarn run start:dev --preserveWatchOutput
     ports:
       - 3000:3000
       - 9229:9229
