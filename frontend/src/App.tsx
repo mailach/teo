@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Container, Typography } from "@mui/material";
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -28,16 +26,31 @@ function App() {
   }
 
   return (
-    <Box sx={{ display: "flex", align: "center", flexDirection: "column" }}>
-      <Typography variant="h1">Termine:</Typography>
+    <Container
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        gap: "20px",
+      }}
+    >
+      <Typography variant="h2" textAlign={"center"}>
+        Aktuelle Termine
+      </Typography>
+
       {events &&
         events.map((event: any) => (
-          <Card key={event.id} sx={{ padding: "8px" }}>
-            <Typography variant="body1">{JSON.stringify(event)}</Typography>
-          </Card>
+          <Box>
+            <Card key={event.id}>
+              <Typography variant="h4">{`${event.id}: ${event.title}`}</Typography>
+              <Typography variant="body1">{`Am ${new Date(
+                event.date
+              )} für bis zu ${event.maxParticipants} Teilis`}</Typography>
+            </Card>
+          </Box>
         ))}
       {isError && <div>Error fetching data.</div>}
-    </Box>
+    </Container>
   );
 }
 
