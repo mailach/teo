@@ -15,6 +15,9 @@ export class EventsService {
     return this.eventsRepository.find();
   }
 
+  findOne(id: number): Promise<Event> {
+    return this.eventsRepository.findOne({ where: { id } });
+  }
   createEvent(createEventDto: CreateEventDto) {
     return this.eventsRepository.save(createEventDto);
   }
