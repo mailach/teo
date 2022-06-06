@@ -41,7 +41,10 @@ export const EventList = () => {
         Aktuelle Termine
       </Typography>
 
-      {events && events.map((event: Event) => <EventCard {...event} />)}
+      {events &&
+        events.map((event: Event) => (
+          <EventCard {...event} showButton={true} />
+        ))}
       {isError && <div>Error fetching data.</div>}
     </Container>
   );

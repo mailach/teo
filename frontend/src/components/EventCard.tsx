@@ -9,7 +9,17 @@ export interface Event {
   id: number;
 }
 
-export const EventCard = ({ title, date, maxParticipants, id }: Event) => {
+interface EventCardProps extends Event {
+  showButton?: Boolean;
+}
+
+export const EventCard = ({
+  title,
+  date,
+  maxParticipants,
+  id,
+  showButton,
+}: EventCardProps) => {
   return (
     <Card
       key={id}
@@ -25,11 +35,13 @@ export const EventCard = ({ title, date, maxParticipants, id }: Event) => {
           date
         )} für bis zu ${maxParticipants} Teilis`}</Typography>
       </Box>
-      <Box>
-        <Link to={`/events/${id}/register`}>
-          <Button variant="contained">Register</Button>
-        </Link>
-      </Box>
+      {showButton && (
+        <Box>
+          <Link to={`/events/${id}/register`}>
+            <Button variant="contained">Register</Button>
+          </Link>
+        </Box>
+      )}
     </Card>
   );
 };

@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Event, EventCard } from "./EventCard";
 
 export const EventRegistration = () => {
   const { id } = useParams();
 
-  const [event, setEvent] = useState([]);
+  const [event, setEvent] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -30,5 +31,5 @@ export const EventRegistration = () => {
     return <div>Loading...</div>;
   }
 
-  return <Box>Test</Box>;
+  return <Box>{event && <EventCard {...(event as Event)} />}</Box>;
 };
