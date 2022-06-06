@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsController } from './events.controller';
 import { EventsService } from './events.service';
-import { Event } from './model/event';
+import { Event } from './model/event.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Event])],

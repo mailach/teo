@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsModule } from './events/events.module';
-import { Event } from './events/model/event';
+import { Event } from './events/model/event.entity';
 
 @Module({
   imports: [
