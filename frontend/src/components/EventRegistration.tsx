@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Event, EventCard } from "./EventCard";
 
 interface FormData {
@@ -12,6 +12,7 @@ interface FormData {
 
 export const EventRegistration = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -26,6 +27,7 @@ export const EventRegistration = () => {
       body: JSON.stringify(data),
     };
     fetch(`http://localhost:3000/events/${id}/register`, requestOptions);
+    navigate("/");
   });
 
   const [event, setEvent] = useState(undefined);
